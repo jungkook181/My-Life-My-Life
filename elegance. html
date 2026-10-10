@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Elegance | Jessia☆</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #211b23;
+      color: #eee5d8;
+      font-family: Georgia, "Times New Roman", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 22px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      padding: 38px 12px;
+    }
+
+    .top {
+      color: #c7ad79;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+    }
+
+    .star {
+      color: #d6bb7e;
+      font-size: 19px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(35px, 9vw, 47px);
+      font-weight: normal;
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: -1.5px;
+    }
+
+    .line {
+      width: 48px;
+      height: 1px;
+      background: #92784f;
+      margin: 26px auto;
+    }
+
+    .subtitle {
+      color: #b9a9bd;
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0 auto;
+    }
+
+    .enter {
+      display: inline-block;
+      margin-top: 36px;
+      padding: 12px 23px;
+      border: 1px solid #92784f;
+      border-radius: 30px;
+      color: #d8bd83;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .enter:hover {
+      background: #d8bd83;
+      color: #211b23;
+    }
+
+    .signature {
+      margin-top: 55px;
+      color: #8f7c91;
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    .bottom {
+      margin-top: 13px;
+      color: #756875;
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+    }
+
+    @media (max-width: 360px) {
+      .page {
+        padding-left: 2px;
+        padding-right: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="top">A BIRTHDAY PROJECT · 30</div>
+
+    <div class="star">✦</div>
+
+    <h1>My Life,<br>My Life</h1>
+
+    <div class="line"></div>
+
+    <p class="subtitle">
+      A little world, made with love.<br>
+      For Jungkook, from Jessia☆
+    </p>
+
+    <a class="enter" href="#welcome">
+      ENTER THIS LITTLE WORLD ♡
+    </a>
+
+    <div class="signature">— Jessia☆</div>
+
+    <div class="bottom">
+      MADE WITH LOVE · 2026
+    </div>
+  </main>
+
+  <section id="welcome" style="
+    min-height: 45vh;
+    padding: 60px 25px;
+    text-align: center;
+    color: #eee5d8;
+    background: #30252f;
+    font-family: Georgia, serif;
+  ">
+    <h2 style="font-weight: normal; color: #d8bd83;">
+      Welcome ♡
+    </h2>
+    <p style="color: #c5b6c7; line-height: 1.9;">
+      Every little detail has a story.<br>
+      This is where our journey begins.
+    </p>
+    <a href="#" style="color: #d8bd83; font-size: 13px;">
+      Back to the beginning ↑
+    </a>
+  </section>
+</body>
+</html>

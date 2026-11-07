@@ -378,47 +378,56 @@
 
   <script>
 
-    const letter = document.getElementById("letter");
-    const hint = document.getElementById("hint");
-    const intro = document.getElementById("intro");
+    
+const letter = document.getElementById("letter");
+const hint = document.getElementById("hint");
+const intro = document.getElementById("intro");
 
-    let secondTap = false;
+const welcomeSeen = localStorage.getItem("jessiaWelcomeSeen");
 
-    function openLetter() {
+let secondTap = false;
 
-      if (!secondTap) {
+// Returning visitors skip the welcome screen
+if (welcomeSeen === "true") {
+  intro.classList.add("dismissed");
+  intro.setAttribute("aria-hidden", "true");
+}
 
-        secondTap = true;
+function openLetter() {
 
-        letter.classList.add("open");
+  if (!secondTap) {
 
-        letter.setAttribute("aria-expanded", "true");
+    secondTap = true;
 
-        hint.textContent = "TAP TO ENTER ♡";
+    letter.classList.add("open");
+    letter.setAttribute("aria-expanded", "true");
 
-      } else {
+    hint.textContent = "TAP TO ENTER ♡";
 
-        intro.classList.add("dismissed");
+  } else {
 
-        intro.setAttribute("aria-hidden", "true");
+    localStorage.setItem("jessiaWelcomeSeen", "true");
 
-      }
+    intro.classList.add("dismissed");
+    intro.setAttribute("aria-hidden", "true");
 
-    }
+  }
 
-    letter.addEventListener("click", openLetter);
+}
 
-    letter.addEventListener("keydown", function(event) {
+letter.addEventListener("click", openLetter);
 
-      if (event.key === "Enter" || event.key === " ") {
+letter.addEventListener("keydown", function(event) {
 
-        event.preventDefault();
+  if (event.key === "Enter" || event.key === " ") {
 
-        openLetter();
+    event.preventDefault();
+    openLetter();
 
-      }
+  }
 
-    });
+});
+
 
   </script>
 

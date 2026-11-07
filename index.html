@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,74 +19,10 @@
       font-family: Georgia, "Times New Roman", serif;
     }
 
-    /* Original messages */
-    #intro {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
+    /* Homepage: visible from the beginning */
 
-    .letter {
-      width: 100%;
-      max-width: 390px;
-      padding: 34px 20px;
-      text-align: center;
-      border: 1px solid #a98a52;
-      border-radius: 5px;
-      background: linear-gradient(145deg, #34271f, #211923);
-      box-shadow: 0 12px 35px #17111a66;
-      cursor: pointer;
-      transition: border-color 0.4s ease;
-    }
-
-    .message {
-      font-size: clamp(22px, 6vw, 28px);
-      line-height: 1.6;
-      font-weight: normal;
-    }
-
-    .name {
-      color: #c4a1d9;
-      text-shadow: 0 0 8px #c4a1d955,
-                   0 0 15px #c9a96e55;
-    }
-
-    .second {
-      display: none;
-      margin-top: 22px;
-      padding-top: 18px;
-      border-top: 1px solid #a98a5266;
-      animation: reveal 0.8s ease both;
-    }
-
-    .letter.open .second {
-      display: block;
-    }
-
-    .hint {
-      margin-top: 22px;
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #b6a18a;
-    }
-
-    @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Dark Elegance homepage */
     #homepage {
-      display: none;
+      display: block;
       min-height: 100vh;
       background: #211b23;
       color: #eee5d8;
@@ -197,51 +134,168 @@
       font-size: 13px;
     }
 
+
+    /* Elegant messaging overlay */
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+
+      background: rgba(24, 19, 27, 0.48);
+
+      opacity: 1;
+      visibility: visible;
+      transition:
+        opacity 0.75s ease,
+        visibility 0.75s ease;
+    }
+
+    #intro.dismissed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .letter {
+      width: 100%;
+      max-width: 390px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      background: transparent;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .message {
+      width: fit-content;
+      max-width: 88%;
+      padding: 17px 20px;
+
+      font-size: clamp(19px, 5.5vw, 25px);
+      line-height: 1.65;
+      font-weight: normal;
+
+      color: #e8d8bd;
+      background: linear-gradient(
+        145deg,
+        #34271f,
+        #211923
+      );
+
+      border: 1px solid #a98a5277;
+      box-shadow: 0 8px 25px #120d1866;
+
+      border-radius: 3px 17px 17px 17px;
+    }
+
+    .name {
+      color: #c4a1d9;
+      text-shadow:
+        0 0 8px #c4a1d955,
+        0 0 15px #c9a96e55;
+    }
+
+    /* Second message reveal */
+
+    .second {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      max-height: 0;
+      margin-top: 0;
+      opacity: 0;
+      overflow: hidden;
+
+      transform: translateY(10px);
+
+      transition:
+        opacity 0.65s ease,
+        transform 0.65s ease,
+        max-height 0.75s ease,
+        margin-top 0.65s ease;
+    }
+
+    .second .message {
+      text-align: left;
+      border-color: #a98a5288;
+      border-radius: 17px 3px 17px 17px;
+
+      background: linear-gradient(
+        145deg,
+        #302332,
+        #211923
+      );
+    }
+
+    .letter.open .second {
+      max-height: 120px;
+      margin-top: 5px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hint {
+      align-self: center;
+      margin-top: 25px;
+
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+
+      color: #c7ad79;
+      opacity: 0.8;
+
+      transition: opacity 0.4s ease;
+    }
+
     @media (max-width: 360px) {
       .page {
         padding-left: 12px;
         padding-right: 12px;
       }
+
+      #intro {
+        padding: 18px;
+      }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Original opening -->
-  <section id="intro">
-    <main
-      class="letter"
-      id="letter"
-      role="button"
-      tabindex="0"
-      aria-expanded="false"
-      aria-label="Open the messages"
-    >
-      <div class="message">
-        Only for you,<br>
-        <span class="name">Jungkook</span>..
-      </div>
+  <!-- Homepage -->
 
-      <div class="second" id="second">
-        <div class="message">
-          But for us,<br>
-          <span class="name">ARMY</span>.. ♡
-        </div>
-      </div>
-
-      <div class="hint" id="hint">TAP TO CONTINUE</div>
-    </main>
-  </section>
-
-  <!-- Homepage: Dark Elegance -->
   <div id="homepage">
+
     <main class="page">
-      <div class="top">A BIRTHDAY PROJECT · 30</div>
+
+      <div class="top">
+        A BIRTHDAY PROJECT · 30
+      </div>
 
       <div class="star">✦</div>
 
-      <h1>My Life,<br>My Life</h1>
+      <h1>
+        My Life,<br>My Life
+      </h1>
 
       <div class="line"></div>
 
@@ -259,9 +313,11 @@
       <div class="bottom">
         MADE WITH LOVE · 2026
       </div>
+
     </main>
 
     <section id="welcome">
+
       <h2>Welcome ♡</h2>
 
       <p>
@@ -270,40 +326,100 @@
       </p>
 
       <a href="#">Back to the beginning ↑</a>
+
     </section>
+
   </div>
 
+
+  <!-- Opening Messages Overlay -->
+
+  <section id="intro">
+
+    <main
+      class="letter"
+      id="letter"
+      role="button"
+      tabindex="0"
+      aria-expanded="false"
+      aria-label="Open the messages"
+    >
+
+      <!-- First message -->
+
+      <div class="message">
+
+        Only for you,<br>
+        <span class="name">Jungkook</span>..
+
+      </div>
+
+      <!-- Second message -->
+
+      <div class="second" id="second">
+
+        <div class="message">
+
+          But for us,<br>
+          <span class="name">ARMY</span>.. ♡
+
+        </div>
+
+      </div>
+
+      <div class="hint" id="hint">
+        TAP TO CONTINUE
+      </div>
+
+    </main>
+
+  </section>
+
+
   <script>
+
     const letter = document.getElementById("letter");
     const hint = document.getElementById("hint");
     const intro = document.getElementById("intro");
-    const homepage = document.getElementById("homepage");
 
     let secondTap = false;
 
     function openLetter() {
+
       if (!secondTap) {
+
         secondTap = true;
 
         letter.classList.add("open");
+
         letter.setAttribute("aria-expanded", "true");
-        hint.textContent = "TAP AGAIN ♡";
+
+        hint.textContent = "TAP TO ENTER ♡";
+
       } else {
-        intro.style.display = "none";
-        homepage.style.display = "block";
-        window.scrollTo(0, 0);
-        document.title = "My Life, My Life ♡♪ | Jessia☆";
+
+        intro.classList.add("dismissed");
+
+        intro.setAttribute("aria-hidden", "true");
+
       }
+
     }
 
     letter.addEventListener("click", openLetter);
 
     letter.addEventListener("keydown", function(event) {
+
       if (event.key === "Enter" || event.key === " ") {
+
         event.preventDefault();
+
         openLetter();
+
       }
+
     });
+
   </script>
 
 </body>
